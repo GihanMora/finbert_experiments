@@ -9,7 +9,7 @@ TENS = ['twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty','nine
 
 numeric_strings = TEENTHS+TEENTHS+HUNDREDTH+ONES+TENS
 emos = ['anger','anticipation','disgust','joy','sad','fear','trust','surprise']
-emotion = emos[7]
+emotion = emos[0]
 f_path = r"E:\Projects\Emotion_detection_gihan\finbert_experiments\data_processed\\"+emotion
 text_files = os.listdir(f_path)
 # print(text_files)
@@ -44,7 +44,7 @@ print(len(left_vocab))
 
 refined = {emotion:vocabulary+left_vocab}
 
-pkl_filename = r"E:\Projects\Emotion_detection_gihan\finbert_experiments\data_processed\refined_dumps\\"+emotion+".pkl"
-with open(pkl_filename, 'wb') as file:
-    pickle.dump(refined, file)
+# pkl_filename = r"E:\Projects\Emotion_detection_gihan\finbert_experiments\data_processed\refined_dumps\\"+emotion+".pkl"
+# with open(pkl_filename, 'wb') as file:
+#     pickle.dump(refined, file)
 
