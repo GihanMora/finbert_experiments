@@ -64,7 +64,10 @@ print(common_dict)
 #         print('in_joy', in_joy)
 #         print('in_surprise', in_surprise)
 #
-to_remove_from_anger = ['caressing','obesity','bridgeport','enjoyable','showcases','entrepreneurs','rescues','delightful','yearning','befriended','showcasing','facilitating','securely','documenting','implementations','facilitates','sited']
+to_remove_from_anger = [
+'championed','attaining', 'repairing','enjoyable','ascribed','hurrying', 'showcases', 'entrepreneurs','rescues', 'delightful', 'subtly', 'reiterated','redeveloped','middlesbrough',
+'influencing', 'showcasing', 'inspecting','befriended','yearning', 'groans','lauded', 'facilitating', 'relocating', 'modernized','securely', 'astonishing','astonishment',
+'spearheaded','documenting', 'implementations', 'facilitates','fearful', 'sited','caressing','obesity','bridgeport','enjoyable','showcases','entrepreneurs','rescues','delightful','yearning','befriended','showcasing','facilitating','securely','documenting','implementations','facilitates','sited']
 to_remove_from_anticipation = ['demoted','outraged','groans','rebellious','documenting','paranoia','bellowed','entrepreneurs','prohibiting','insurrection','sarcastic','yanking','collapses','impatience','perpetrators','rejecting','dissatisfaction','catastrophic','ferocious','cynical','ousted','distraught','persecuted','middlesbrough','detrimental','menacing','thwarted','fearful','destroys','erroneously','dismay','condemning','tormented','grimace','infused','ominous','forbade']
 to_remove_joy = ['spa','grasslands','southport','quivering','noteworthy','restricting','deities', 'alleviate', 'torino', 'zhejiang', 'florian', 'northampton','secluded', 'discouraged', 'tianjin','titanium', 'nils', 'oskar','promenade','fragmented','unease', 'crippled',  'dissatisfied','austrians','northamptonshire','dismay','discourage', 'relocating', 'tormented', 'exhibiting', 'horrific', 'anxious', 'moans', 'fearful', 'baffled','showcases' ,'forbade', 'groans', 'distraught','appalled','punishments', 'hesitant', 'despised', 'grimace',  'taunting', 'bewildered', 'curving', 'impatience', 'sarcastic', 'ambiguity', 'yanking', 'beheaded', 'intimidating', 'detrimental',  'ferocious', 'impoverished', 'persecuted','inspecting', 'showcasing', 'implementations', 'middlesbrough', 'ruining', 'destroys', 'infused', 'irritated', 'hideous', 'thwarted', 'bridgeport', 'decreases','pained','catastrophic', 'cynical', 'ousted', 'humiliated', 'caressing', 'outraged', 'insulting', 'dazzling', 'reiterated','insurrection', 'disgusted','radically', 'dissatisfaction', 'burnley', 'spearheaded' ]
 to_remove_from_disgust = ['shimmering','progressing', 'pious','pulsing','decreed','astonishing','dazzling','yearning', 'sited', 'lauded', 'implementations', 'relocating'
@@ -102,14 +105,14 @@ to_remove_from_trust = ['sarcastic','ousted', 'insulted', 'controversies', 'forb
 
 with open('E:\Projects\Emotion_detection_gihan\\from git\\nlp-emotion-analysis-core/src/models/emotions/emotions_plutchik.pkl','rb') as f:
     EMO_RESOURCES = pickle.load(f)
-print(EMO_RESOURCES['trust'])
+# print(EMO_RESOURCES['trust'])
 
 # for each_key in common_dict:
-#     if(each_key!='trust'):continue
+#     if(each_key!='anger'):continue
 #     in_positives = []
 #     in_negatives = []
-#     print(each_key,[x for x in common_dict[each_key] if x not in to_remove_from_trust+EMO_RESOURCES['trust']])
-#     # print(each_key, common_dict[each_key])
+#     # print(each_key,[x for x in common_dict[each_key] if x not in to_remove_from_anger+EMO_RESOURCES['anger']])
+#     print(each_key, common_dict[each_key])
 #
 #     for each_w in common_dict[each_key]:
 #         if(each_w in positives[0]):
@@ -125,9 +128,14 @@ fixed_dict = {}
 with open('E:\Projects\Emotion_detection_gihan\\from git\\nlp-emotion-analysis-core/src/models/emotions/emotions_plutchik.pkl','rb') as f:
     EMO_RESOURCES = pickle.load(f)
 
+for key_e in EMO_RESOURCES:
+    print(key_e,len(EMO_RESOURCES[key_e]))
+
+
 for each_key in common_dict:
+    # if (each_key != 'anger'): continue
     print(each_key)
-    if (each_key == 'anger'): to_remove = to_remove_from_trust
+    if (each_key == 'anger'): to_remove = to_remove_from_anger
     if (each_key == 'anticipation'): to_remove = to_remove_from_anticipation
     if (each_key == 'joy'): to_remove = to_remove_joy
     if (each_key == 'disgust'): to_remove = to_remove_from_disgust
@@ -142,10 +150,10 @@ for each_key in common_dict:
     print(len(fixed))
     fixed_dict[each_key] = fixed
     fixeda = [x for x in common_dict[each_key] if x not in to_remove + EMO_RESOURCES[each_key]]
-    print(fixeda)
+    print('only in new vocab',fixeda)
     print(len(fixeda))
-
-
-pkl_filename = r"E:\Projects\Emotion_detection_gihan\finbert_experiments\data_processed\high_quality_dumps\\financial_emotional_vocabulary.pkl"
-with open(pkl_filename, 'wb') as file:
-    pickle.dump(fixed_dict, file)
+#
+#
+# pkl_filename = r"E:\Projects\Emotion_detection_gihan\finbert_experiments\data_processed\high_quality_dumps\\financial_emotional_vocabulary.pkl"
+# with open(pkl_filename, 'wb') as file:
+#     pickle.dump(fixed_dict, file)
